@@ -1,6 +1,53 @@
+import argparse
+import sys
+from logger import logger
+
+from profile_store import ProfileStore
+from adapter_applier import AdapterApplier
+
+def cmd_list(store: ProfileStore):
+    # выведи все профили из store.list_profiles()
+    # если профилей нет — выведи "Нет сохранённых профилей"
+    profiles = store.list_profiles()
+    if not profiles:
+        logger.warning('Нет сохраненных профилей')
+        return
+    for name, data in profiles.items():
+        print(f'{name} - {data}')
+
+
+
+def cmd_apply(adapter_name: str, profile_name: str, store: ProfileStore, adapter_applier: AdapterApplier):
+    # получи профиль из store.get_profile(profile_name)
+    # если профиль не найден — выведи ошибку и выйди через sys.exit(1)
+    # примени профиль через AdapterApplier
+    profile = store.get_profile(profile_name)
+    if profile is None:
+        sys.exit(1)
+    adapter_applier.apply_profile(adapter_name, profile)
+
 def main():
-    print("Hello from netsnap!")
+    parser = argparse.ArgumentParser(description='netsnap — смена сетевых профилей')
+    sub = parser.add_subparsers(dest='command')
 
+    # команда: python main.py list
+    sub.add_parser('list', help='Список профилей')
 
-if __name__ == "__main__":
+    # команда: python main.py apply work --adapter "Беспроводная сеть"
+    p_apply = sub.add_parser('apply', help='Применить профиль')
+    p_apply.add_argument('name', help='Имя профиля')
+    p_apply.add_argument('--adapter', required=True, help='Имя адаптера')
+
+    args = parser.parse_args()
+    store = ProfileStore()
+    applier = AdapterApplier()
+
+    if args.command == 'list':
+        cmd_list(store)
+    elif args.command == 'apply':
+        cmd_apply(args.adapter, args.name, store, applier)
+    else:
+        parser.print_help()
+
+if __name__ == '__main__':
     main()

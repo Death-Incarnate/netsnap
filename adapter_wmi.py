@@ -42,18 +42,3 @@ class AdapterManager:
         output = self.get_adapters().get(adapter_name)
         logger.info(output)
         return output
-    
-# ------------------------------------------------------------------
-# Низкоуровневые netsh-команды (приватные методы)
-# ------------------------------------------------------------------
-
-
-
-
-
-
-
-
-cli = AdapterManager()
-cli.get_adapter_config('Intel(R) Wi-Fi 6 AX201 160MHz')
-
