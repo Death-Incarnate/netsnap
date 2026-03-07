@@ -2,7 +2,6 @@ import os
 import json
 
 
-
 class ProfileStore:
     '''
     Простое хранилище профилей на основе JSON-файла.
@@ -33,7 +32,6 @@ class ProfileStore:
         # Если файла ещё нет — начинаем с пустого словаря.
         self._data: dict = self._load()
 
-    
     def _load(self):
         '''Читаем JSON-файл с диска. Если файла нет — возвращаем пустой словарь.'''
         if os.path.exists(self.filepath):
@@ -43,11 +41,9 @@ class ProfileStore:
         return {}
     
     def _save(self):
-       '''Сохраняем текущий словарь профилей обратно в JSON-файл.''' 
-       with open (self.filepath, 'w', encoding='utf-8') as file:
-            # indent=2        — красивое форматирование с отступами
-            # ensure_ascii=False — кириллица сохраняется как есть, не в \uXXXX
-           json.dump(self._data, file, ensure_ascii=False, indent=2)
+        '''Сохраняем текущий словарь профилей обратно в JSON-файл.'''
+        with open(self.filepath, 'w', encoding='utf-8') as file:
+            json.dump(self._data, file, ensure_ascii=False, indent=2)
 
     def list_profiles(self):
         '''Вернуть все профили. Используется в команде 'list'.'''
@@ -75,5 +71,3 @@ class ProfileStore:
             self._save()
             return True
         return False
-    
-        

@@ -15,12 +15,9 @@ class AdapterInfo(NamedTuple):
 class AdapterManager:
     def __init__(self):
         self._wmi = wmi.WMI()
-        #self._cache : dict[str, AdapterInfo] | None = None
 
-    def get_adapters(self) -> list[dict]:
-        '''Возвращает список активных сетевых адаптеров с их конфигурацией.'''
-        # Win32_NetworkAdapterConfiguration — это таблица всех сетевых адаптеров
-        # IPEnabled=True — только те у которых включён IP (отсекаем виртуальные/bluetooth)
+    def get_adapters(self) -> dict[str, AdapterInfo]:
+        '''Возвращает активные сетевые адаптеры с их конфигурацией.'''
         net_adapters = self._wmi.Win32_NetworkAdapterConfiguration
 
         output = {
@@ -35,7 +32,6 @@ class AdapterManager:
             )
             for adapter in net_adapters(IPEnabled=True)
         }
-        #logger.info(output)
         return output
 
     def get_adapter_config(self, adapter_name: str) -> AdapterInfo | None:

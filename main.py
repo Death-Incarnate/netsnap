@@ -6,8 +6,6 @@ from profile_store import ProfileStore
 from adapter_applier import AdapterApplier
 
 def cmd_list(store: ProfileStore):
-    # выведи все профили из store.list_profiles()
-    # если профилей нет — выведи "Нет сохранённых профилей"
     profiles = store.list_profiles()
     if not profiles:
         logger.warning('Нет сохраненных профилей')
@@ -16,13 +14,10 @@ def cmd_list(store: ProfileStore):
         print(f'{name} - {data}')
 
 
-
 def cmd_apply(adapter_name: str, profile_name: str, store: ProfileStore, adapter_applier: AdapterApplier):
-    # получи профиль из store.get_profile(profile_name)
-    # если профиль не найден — выведи ошибку и выйди через sys.exit(1)
-    # примени профиль через AdapterApplier
     profile = store.get_profile(profile_name)
     if profile is None:
+        logger.error(f'Профиль "{profile_name}" не найден')
         sys.exit(1)
     adapter_applier.apply_profile(adapter_name, profile)
 
