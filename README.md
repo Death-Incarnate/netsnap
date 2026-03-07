@@ -14,6 +14,8 @@ If you work in industrial automation or frequently move between networks, you kn
 Every time you switch, you have to dig through:
 **Control Panel → Network Connections → Properties → IPv4 → Properties → type everything manually → OK**
 
+![IPv4 Properties dialog](ex.png)
+
 That's 7 clicks and 30 seconds. Every. Single. Time.
 
 ## The Solution
