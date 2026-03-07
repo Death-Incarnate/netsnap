@@ -7,3 +7,9 @@ requires-python = ">=3.14"
 dependencies = [
     "wmi>=1.5.1",
 ]
+
+[project.scripts]
+netsnap = "main:main"
+
+[tool.setuptools]
+py-modules = ["main", "adapter_applier", "adapter_wmi", "profile_store", "logger"]

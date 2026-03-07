@@ -1,6 +1,8 @@
 import os
 import json
 
+# Папка где лежит profile_store.py
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class ProfileStore:
     '''
@@ -25,9 +27,9 @@ class ProfileStore:
     }
     '''
 
-    def __init__(self, filepath: str = 'profiles.json'):
+    def __init__(self, filepath: str = None):
         # Путь к файлу с профилями (по умолчанию рядом со скриптом)
-        self.filepath = filepath
+        self.filepath = filepath or os.path.join(BASE_DIR, 'profiles.json')
         # Загружаем профили из файла при старте.
         # Если файла ещё нет — начинаем с пустого словаря.
         self._data: dict = self._load()
