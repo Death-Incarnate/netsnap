@@ -1,5 +1,7 @@
 # netsnap
 
+[![Follow @DeadManAI](https://img.shields.io/badge/Follow-@DeadManAI-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/DeadManAI)
+
 A lightweight CLI utility for quickly switching network configurations on Windows.
 No GUI, no bloat — just one command.
 
@@ -170,3 +172,7 @@ No external dependencies for applying profiles — only Python stdlib + system `
 ## License
 
 MIT
+
+---
+
+Built by [@DeadManAI](https://x.com/DeadManAI) — Army vet. AI builder. Founder of Dead Empire.
