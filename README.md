@@ -1,7 +1,5 @@
 # netsnap
 
-[![Follow @DeadManAI](https://img.shields.io/badge/Follow-@DeadManAI-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/DeadManAI)
-
 A lightweight CLI utility for quickly switching network configurations on Windows.
 No GUI, no bloat — just one command.
 
@@ -38,32 +36,41 @@ netsnap apply plc_station1
 - [uv](https://github.com/astral-sh/uv) package manager
 - Administrator privileges (required to change network settings)
 
+## Provenance
+
+This repository is based on earlier upstream work and is maintained here as my own working version. If you are looking for the original project lineage, refer to repository history and prior authorship.
+
 ## Installation
 
-**1. Clone the repository:**
+1. Clone the repository:
+
 ```bash
-https://github.com/heavenyoung1/netsnap
+git clone https://github.com/Death-Incarnate/netsnap.git
 cd netsnap
 ```
 
-**2. Create virtual environment and install dependencies:**
+2. Create a virtual environment and install dependencies:
+
 ```bash
 uv sync
 ```
 
-**3. Install the `netsnap` command globally:**
+3. Install the `netsnap` command locally:
+
 ```bash
 uv pip install -e .
 ```
 
-**4. Create your profiles file from the template:**
+4. Create your profiles file from the template:
+
 ```bash
 cp profiles.example.json profiles.json
 ```
 
 Open `profiles.json` and fill in your actual network settings.
 
-**5. Verify the installation:**
+5. Verify the installation:
+
 ```bash
 netsnap list
 ```
@@ -172,7 +179,3 @@ No external dependencies for applying profiles — only Python stdlib + system `
 ## License
 
 MIT
-
----
-
-Built by [@DeadManAI](https://x.com/DeadManAI) — Army vet. AI builder. Founder of Dead Empire.
